@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: plum;
+        }
+        .container {
+            background-color:tomato;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label{
+            font-size: 20px;
+            font-weight: 600;
+        }
+        input,  button {
+            width: 200px;
+            height: 40px;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 10px 0;
+            padding: 10px;
+            outline: none;
+        }
+     
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Age Calculator</h1>
+        <label for="dob">Date of Birth:</label><br><br>
+        <input type="date" id="dob"><br><br>
+        <button onclick="calculateAge()">Calculate Age</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function calculateAge() {
+    const dob = document.getElementById('dob').value;
+    if (!dob) {
+        alert("Please select your date of birth!");
+        return;
+    }
+
+    const dobDate = new Date(dob);
+    const today = new Date();
+    
+    let age = today.getFullYear() - dobDate.getFullYear();
+    const monthDifference = today.getMonth() - dobDate.getMonth();
+    const dayDifference = today.getDate() - dobDate.getDate();
+
+    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+        age--;
+    }
+
+    document.getElementById('result').innerText = `You are ${age} years old.`;
+}
+
+    </script>
+</body>
+</html>
